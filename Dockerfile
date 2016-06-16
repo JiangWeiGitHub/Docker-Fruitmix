@@ -48,6 +48,7 @@ WORKDIR /git/fruitmix
 RUN npm --registry http://registry.cnpmjs.org install -g babel-cli fs-xattr nodemon gm ffmpeg imagemagick graphicsmagick \
 && npm --registry http://registry.cnpmjs.org install babylon babel-preset-es2015 babel-preset-es2016 \
 && npm --registry http://registry.cnpmjs.org install
+# PS: the reason that use '--registry http://registry.cnpmjs.org' is that tianchao's network is you know why.
 
 # deploy mongodb enviroment
 RUN mkdir -p /data/db
