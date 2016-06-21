@@ -1,3 +1,4 @@
+# The default version of Ubuntu 16.04's python is 3.0, some npm packages can not be built.
 FROM ubuntu:14.04
 
 MAINTAINER JiangWeiGitHub <wei.jiang@winsuntech.cn>
@@ -24,7 +25,7 @@ imagemagick \
 graphicsmagick \
 supervisor
 
-# install ffmpeg for ubuntu 14.04
+# install ffmpeg for Ubuntu 14.04
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties software-properties-common \
  && add-apt-repository ppa:mc3man/trusty-media \
  && apt-get update \
