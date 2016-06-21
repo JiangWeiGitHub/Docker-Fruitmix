@@ -24,6 +24,12 @@ imagemagick \
 graphicsmagick \
 supervisor
 
+# install ffmpeg for ubuntu 14.04
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-software-properties software-properties-common \
+ && add-apt-repository ppa:mc3man/trusty-media \
+ && apt-get update \
+ && apt-get install ffmpeg
+
 # install nodejs with binary packages
 RUN wget https://nodejs.org/dist/v6.2.1/node-v6.2.1-linux-x64.tar.xz \
  && tar -Jxf node-v6.2.1-linux-x64.tar.xz \
