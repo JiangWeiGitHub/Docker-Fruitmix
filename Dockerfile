@@ -17,7 +17,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 apt-transport-https \
 ca-certificates \
-build-essential \m
+build-essential \
 wget \
 git \
 python \
