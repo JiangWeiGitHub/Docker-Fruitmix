@@ -17,7 +17,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 apt-transport-https \
 ca-certificates \
-build-essential \
+build-essential \m
 wget \
 git \
 python \
@@ -61,8 +61,8 @@ RUN npm --registry http://registry.cnpmjs.org install -g babel-cli fs-xattr node
 RUN npm run build
 
 # deploy mongodb enviroment
-RUN mkdir /mongodb-data
-VOLUME /mongodb-data
+RUN mkdir /mongodb
+VOLUME /mongodb
 
 # install mongodb
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 \
@@ -77,7 +77,7 @@ RUN mkdir -p /var/log/supervisor \
  && echo "nodaemon=true" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "[program:mongod]" >> /etc/supervisor/conf.d/supervisord.conf \
- && echo "command=/bin/bash -c \"mongod --dbpath /mongodb-data\"" >> /etc/supervisor/conf.d/supervisord.conf \
+ && echo "command=/bin/bash -c \"mongod --dbpath /mongodb\"" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "[program:fruitmix]" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "command=/bin/bash -c \"npm start\"" >> /etc/supervisor/conf.d/supervisord.conf \
