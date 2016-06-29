@@ -52,7 +52,7 @@ RUN cd / \
 WORKDIR /git/fruitmix
 
 # install npm packages
-RUN npm --registry http://registry.cnpmjs.org install -g babel-cli fs-xattr nodemon gm ffmpeg imagemagick graphicsmagick \
+RUN npm --registry http://registry.cnpmjs.org install -g babel-cli fs-xattr nodemon gm ffmpeg imagemagick graphicsmagick fs-xattr \
  && npm --registry http://registry.cnpmjs.org install babylon babel-preset-es2015 babel-preset-es2016 \
  && npm --registry http://registry.cnpmjs.org install
 # PS: the reason that use '--registry http://registry.cnpmjs.org' is that tianchao's network is you know why.
@@ -61,8 +61,8 @@ RUN npm --registry http://registry.cnpmjs.org install -g babel-cli fs-xattr node
 RUN npm run build
 
 # deploy mongodb enviroment
-RUN mkdir -p /data/db
-VOLUME /data
+RUN mkdir /mongodb-data
+VOLUME /mongodb-data
 
 # install mongodb
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 \
@@ -77,7 +77,7 @@ RUN mkdir -p /var/log/supervisor \
  && echo "nodaemon=true" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "[program:mongod]" >> /etc/supervisor/conf.d/supervisord.conf \
- && echo "command=/bin/bash -c \"mongod\"" >> /etc/supervisor/conf.d/supervisord.conf \
+ && echo "command=/bin/bash -c \"mongod --dbpath /mongodb-data\"" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "[program:fruitmix]" >> /etc/supervisor/conf.d/supervisord.conf \
  && echo "command=/bin/bash -c \"npm start\"" >> /etc/supervisor/conf.d/supervisord.conf \
