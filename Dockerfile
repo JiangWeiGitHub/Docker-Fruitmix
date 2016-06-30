@@ -38,15 +38,21 @@ RUN wget https://nodejs.org/dist/v6.2.1/node-v6.2.1-linux-x64.tar.xz \
  && rm -rf node-v6.2.1-linux-x64 node-v6.2.1-linux-x64.tar.xz
 
 # install fruitmix project's source code
+# RUN cd / \
+#  && mkdir git \
+#  && cd /git \
+#  && git clone https://github.com/wisnuc/fruitmix.git \
+#  && cd fruitmix \
+#  && echo "{" > .babelrc \
+#  && echo "  \"presets\": [\"es2015\"]," >> .babelrc \
+#  && echo "  \"plugins\": [\"syntax-async-functions\", \"transform-regenerator\", \"transform-es2015-template-literals\", \"transform-runtime\"]" >> .babelrc \
+#  && echo "}" >> .babelrc
+ 
 RUN cd / \
  && mkdir git \
  && cd /git \
  && git clone https://github.com/wisnuc/fruitmix.git \
- && cd fruitmix \
- && echo "{" > .babelrc \
- && echo "  \"presets\": [\"es2015\"]," >> .babelrc \
- && echo "  \"plugins\": [\"syntax-async-functions\", \"transform-regenerator\", \"transform-es2015-template-literals\", \"transform-runtime\"]" >> .babelrc \
- && echo "}" >> .babelrc
+ && cd fruitmix
 
 # point out working directory
 WORKDIR /git/fruitmix
