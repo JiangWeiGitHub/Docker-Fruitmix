@@ -68,7 +68,8 @@ RUN npm run build
 
 # deploy mongodb enviroment
 RUN mkdir /mongodb
-VOLUME /mongodb
+VOLUME /mongodb /data
+EXPOSE 80
 
 # install mongodb
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 \
@@ -76,8 +77,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org
 
-# install supervisor for running mongodb & fruitmix both
-# RUN apt-get -y install supervisor \
+# configure supervisor for running mongodb & fruitmix both
 RUN mkdir -p /var/log/supervisor \
  && echo "[supervisord]" > /etc/supervisor/conf.d/supervisord.conf \
  && echo "nodaemon=true" >> /etc/supervisor/conf.d/supervisord.conf \
