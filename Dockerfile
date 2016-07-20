@@ -68,7 +68,7 @@ RUN npm run build
 
 # deploy mongodb enviroment
 RUN mkdir /mongodb \
- && mkdir /data
+ && mkdir /data \
  && mkdir -p /var/log/supervisor
 VOLUME /mongodb /data /var/log/supervisor
 EXPOSE 80
